@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <title>聊天室</title>
+</head>
+
+<body class="bg-light">
+    <div class="p-3 d-flex justify-content-center">
+        <!-- 聊天窗口：一个 Card -->
+        <div class="card">
+            <!-- Header：图标和标题 -->
+            <div class="card-header bg-success bg-gradient text-white d-flex justify-content-between">
+                <span><i class="bi bi-chat-dots"></i>&nbsp;聊天室</span>
+                <span><i class="bi bi-box-arrow-right"></i>&nbsp;<a class="text-light" href="">离开房间</a></span>
+            </div>
+            <!-- Body -->
+            <div class="card-body">
+                <div class="row">
+                    <!-- 左侧栏 -->
+                    <div class="col-sm-12 col-md-4 panel">
+                        <!-- 当前房间 -->
+                        <ul class="list-group list-group-flush" id="room">
+                            <li class="list-group-item">
+                                <span><i class="bi bi-door-open-fill"></i>&nbsp;<b>房间</b></span>
+                            </li>
+                        </ul>
+                        <!-- 房间内成员 -->
+                        <ul class="list-group list-group-flush mt-3 member-list">
+                            <li class="list-group-item">
+                                <span><i class="bi bi-people-fill"></i>&nbsp;<b>成员</b></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- 右侧栏：消息流 -->
+                    <div class="col-sm-12 col-md-8 right-panel" style="height: 600px; overflow-y: scroll;">
+                        <div class="msg-container">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer：输入框和发送按钮 -->
+            <div class="card-footer">
+                <!-- 表单用于提交操作 -->
+                <form action="#" id="input-form">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="msg" placeholder="输入消息">
+                        <button class="btn btn-success" id="send-button">发送</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <!-- Qs 用来解析 Query String -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.10.3/qs.min.js"></script>
+    <!-- 引入 Socket.IO 服务端暴露的客户端 JS 引入进来，让页面作为客户端 -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./main.js"></script>
+    <!-- Bootstrap JavaScript Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+
+<style>
+    @media (min-width: 768px) {
+        .panel {
+            border-right: 1px solid rgba(0, 0, 0, 0.125);
+        }
+        .card {
+            width: 800px;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .panel {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+        }
+        .card {
+            width: 100%;
+        }
+    }
+    
+    #send-button {
+        width: 80px;
+    }
+</style>
+
+</html>
