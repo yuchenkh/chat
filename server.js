@@ -42,7 +42,7 @@ io.on("connection", (socket) => {
         io.to(room).emit("memberChange", getRoomUsers(room)); // 将当前房间里的成员信息广播出去
         // 监听聊天消息
         socket.on("chatMessage", message => {
-            console.log("有客户在房间里发送了消息：" + message);
+            console.log(message.name + " 说：" + message.content);
             // 将这条消息转发给房间内的所有客户（使用 io，即全局连接推送给这个房间里的所有人）
             io.to(room).emit("chatMessage", message);
         });
@@ -50,6 +50,7 @@ io.on("connection", (socket) => {
         socket.on("disconnect", () => {
             userLeave(socket.id);
             io.to(room).emit("memberChange", getRoomUsers(room));
+            console.log(name + " 退出聊天室：" + room);
         });
     });
 })
